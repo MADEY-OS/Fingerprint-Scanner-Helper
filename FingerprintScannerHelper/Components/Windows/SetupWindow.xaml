@@ -5,14 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FingerprintScannerHelper.Components.Windows"
         mc:Ignorable="d"
-        Title="Setup" Height="400" Width="800">
+        ResizeMode="NoResize"
+        Title="Setup" Height="300" Width="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="300"/>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Name="btnSearchFolder" Click="BtnSearchFolder_Click">Wyszukaj</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <WrapPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label>Ścieżka źródłowa:</Label>
+            <TextBox Name="TBSrc" Width="300"/>
+            <Button Name="btnSrc" Click="BtnSrc_Click">Przeglądaj</Button>
+            <Label>Ścieżka docelowa:</Label>
+            <TextBox Name="TBDest" Width="300"/>
+            <Button Name="btnDest" Click="BtnDest_Click">Przeglądaj</Button>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button Name="btnConfirm" Click="BtnConfirm_Click" Content="Zatwierdź" Width="200" Height="25"/>
         </WrapPanel>
     </Grid>
 </Window>

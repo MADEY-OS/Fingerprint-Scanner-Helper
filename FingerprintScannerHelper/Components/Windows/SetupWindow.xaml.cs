@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FingerprintScannerHelper.Components.Windows
 {
@@ -14,12 +15,34 @@ namespace FingerprintScannerHelper.Components.Windows
             InitializeComponent();
         }
 
-        private void BtnSearchFolder_Click(object sender, RoutedEventArgs e)
+        private void BtnSrc_Click(object sender, RoutedEventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.InitialDirectory = "C:\\Users";
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                Uri fileUri = new Uri(dialog.FileName);
+                TBSrc.Text = fileUri.ToString();
+            }
+        }
+        private void BtnDest_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
                 Uri fileUri = new Uri(openFileDialog.FileName);
+                TBSrc.Text = fileUri.ToString();
+            }
+        }
+
+         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                TBSrc.Text = fileUri.ToString();
             }
         }
     }

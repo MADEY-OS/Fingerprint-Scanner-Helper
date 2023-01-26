@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAPICodePack-Shell" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\1.png" />
     <Resource Include="Images\10.png" />
     <Resource Include="Images\2.png" />
