@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vXyQKBM0sFNskoxhH7s5iZyhiarrqR9PBSn0VL3sY1a1KKsT54c654fqFseWVGL4uK5Ri++cGHa5SuLHa9OtqA==",
+  "dgSpecHash": "o8NVCdAEb1TGF4ahnXPml91LqZNYzDfiyU0WpyCJqGVZ4PUJdcvCyZSZh20bFBJACZKLIGLuBeYDVXmMrWn40g==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\Fingerprint-Scanner-Helper\\FingerprintScannerHelper\\FingerprintScannerHelper.csproj",
+  "projectFilePath": "H:\\GitHub\\Fingerprint-Scanner-Helper\\FingerprintScannerHelper\\FingerprintScannerHelper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\madej\\.nuget\\packages\\microsoft.windowsapicodepack-core\\1.1.0\\microsoft.windowsapicodepack-core.1.1.0.nupkg.sha512",
     "C:\\Users\\madej\\.nuget\\packages\\microsoft.windowsapicodepack-shell\\1.1.0\\microsoft.windowsapicodepack-shell.1.1.0.nupkg.sha512"

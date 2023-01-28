@@ -11,6 +11,9 @@ namespace FingerprintScannerHelper
         public MainWindow()
         {
             InitializeComponent();
+
+            SetupWindow setup = new SetupWindow();
+            setup.ShowDialog();
         }
 
         private void Arduino_MenuItem_Click(object sender, RoutedEventArgs e)

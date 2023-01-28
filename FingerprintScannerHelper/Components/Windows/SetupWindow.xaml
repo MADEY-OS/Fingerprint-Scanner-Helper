@@ -24,6 +24,8 @@
             <Label>Ścieżka docelowa:</Label>
             <TextBox Name="TBDest" Width="300"/>
             <Button Name="btnDest" Click="BtnDest_Click">Przeglądaj</Button>
+            <Label Width="200">Port Arduino:</Label>
+            <TextBox Name="TBArduino" Width="300"/>
         </WrapPanel>
         <WrapPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Button Name="btnConfirm" Click="BtnConfirm_Click" Content="Zatwierdź" Width="200" Height="25"/>

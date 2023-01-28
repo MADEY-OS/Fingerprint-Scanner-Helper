@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\
+H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\
 FingerprintScannerHelper
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\App.xaml
+H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\App.xaml
 41842755795
 1898410561
-8-1766351551
-1971507787508
+91502510034
+197-527143565
 Components\Windows\ArduinoSetupWindow.xaml;Components\Windows\HelpWindow.xaml;Components\Windows\SetupWindow.xaml;MainWindow.xaml;
 
 False
