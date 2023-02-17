@@ -67,7 +67,6 @@ H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\bin\Debug\net6.0-w
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\bin\Debug\net6.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\bin\Debug\net6.0-windows\Microsoft.WindowsAPICodePack.ShellExtensions.dll
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\FingerprintScannerHelper.csproj.AssemblyReference.cache
-H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\ArduinoSetupWindow.g.cs
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\HelpWindow.g.cs
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\SetupWindow.g.cs
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\MainWindow.g.cs
@@ -75,7 +74,6 @@ H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-w
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\FingerprintScannerHelper_Content.g.cs
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\FingerprintScannerHelper_MarkupCompile.cache
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\FingerprintScannerHelper_MarkupCompile.lref
-H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\ArduinoSetupWindow.baml
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\HelpWindow.baml
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\SetupWindow.baml
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\MainWindow.baml
@@ -90,3 +88,7 @@ H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-w
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\FingerprintScannerHelper.pdb
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\FingerprintScannerHelper.genruntimeconfig.cache
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\ref\FingerprintScannerHelper.dll
+H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\SettingsWindow.g.cs
+H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\obj\Debug\net6.0-windows\Components\Windows\SettingsWindow.baml
+H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\bin\Debug\net6.0-windows\MVVMEssentials.dll
+H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

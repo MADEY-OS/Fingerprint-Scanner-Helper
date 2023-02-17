@@ -7,10 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Components\Windows\ArduinoSetupWindow.xaml.cs">
+    <Compile Update="Components\Windows\HelpWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Components\Windows\HelpWindow.xaml.cs">
+    <Compile Update="Components\Windows\SettingsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Components\Windows\SetupWindow.xaml.cs">
@@ -18,10 +18,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Components\Windows\ArduinoSetupWindow.xaml">
+    <Page Update="Components\Windows\HelpWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\Windows\HelpWindow.xaml">
+    <Page Update="Components\Windows\SettingsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\Windows\SetupWindow.xaml">

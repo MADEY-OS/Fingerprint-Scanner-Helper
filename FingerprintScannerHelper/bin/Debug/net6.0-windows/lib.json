@@ -1,0 +1,117 @@
+[
+  {
+    "Id": 1,
+    "Name": "PS",
+    "Description": "Palec przyłożony normalnie."
+  },
+  {
+    "Id": 2,
+    "Name": "PL",
+    "Description": "Palec przyłożony lekko."
+  },
+  {
+    "Id": 3,
+    "Name": "PF",
+    "Description": "Palec przyłożony mocno."
+  },
+  {
+    "Id": 4,
+    "Name": "RR",
+    "Description": "Palec rolowany w prawo."
+  },
+  {
+    "Id": 5,
+    "Name": "RL",
+    "Description": "Palec rolowany w lewo."
+  },
+  {
+    "Id": 6,
+    "Name": "RTT",
+    "Description": "Palec rolowany do góry."
+  },
+  {
+    "Id": 7,
+    "Name": "CCW",
+    "Description": "Palec obracany przeciwnie do wskazówek zegara."
+  },
+  {
+    "Id": 8,
+    "Name": "ACW",
+    "Description": "Palec obracany zgodnie ze wskazówkami zegara."
+  },
+  {
+    "Id": 9,
+    "Name": "MTT",
+    "Description": "Palec przesunięty w góre."
+  },
+  {
+    "Id": 10,
+    "Name": "TB",
+    "Description": "Palec przesunięty w dół."
+  },
+  {
+    "Id": 11,
+    "Name": "TL",
+    "Description": "Palec przesunięty w lewo."
+  },
+  {
+    "Id": 12,
+    "Name": "TR",
+    "Description": "Palec przesunięty w prawo."
+  },
+  {
+    "Id": 13,
+    "Name": "TTL",
+    "Description": "Palec przesunięty skośnie do góry w lewo."
+  },
+  {
+    "Id": 14,
+    "Name": "TTR",
+    "Description": "Palec przesunięty skośnie do góry w prawo."
+  },
+  {
+    "Id": 15,
+    "Name": "TBL",
+    "Description": "Palec przesunięty skośnie w dół w lewo."
+  },
+  {
+    "Id": 16,
+    "Name": "TBR",
+    "Description": "Palec przesunięty skośnie w dół w prawo."
+  },
+  {
+    "Id": 17,
+    "Name": "czubek prosto",
+    "Description": "Czubek palca przyłożony normalnie."
+  },
+  {
+    "Id": 18,
+    "Name": "czubek lewy",
+    "Description": "Lewa część czubka palca."
+  },
+  {
+    "Id": 19,
+    "Name": "czubek prawy",
+    "Description": "Prawa część czubka palca."
+  },
+  {
+    "Id": 20,
+    "Name": "czubek rolowany w prawo",
+    "Description": "Czubek Rolowany w prawo."
+  },
+  {
+    "Id": 21,
+    "Name": "czubek rolowany w lewo",
+    "Description": "Czubek Rolowany w lewo."
+  },
+  {
+    "Id": 22,
+    "Name": "NW",
+    "Description": "Palec przyłożony normalnie, palec musi być mokry."
+  },
+  {
+    "Id": 23,
+    "Name": "ND",
+    "Description": "Palec przyłożony normalnie, palec musi być suchy."
+  }
+]
