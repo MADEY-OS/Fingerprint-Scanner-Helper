@@ -45,7 +45,7 @@ namespace FingerprintScannerHelper.Services
             return new BitmapImage(new Uri(@"Images/" + fingerNumber + ".png", UriKind.Relative));
         }
 
-        public string GetScan()
+        public string GetScanVariant()
         {
             var lib = GetLibrary();
             var step = GetConfiguration().Step;
@@ -53,5 +53,27 @@ namespace FingerprintScannerHelper.Services
             return lib.FirstOrDefault(s => s.Id == step).Description.ToString();
         }
 
+        public void ModifyConfiguration(string? src, string? dest, string? arduino, int person, int finger, int step)
+        {
+            var newSrc = src != GetConfiguration().SourcePath ? src : GetConfiguration().SourcePath;
+            var newDest = dest != GetConfiguration().DestinationPath ? dest : GetConfiguration().DestinationPath;
+            var newArduino = arduino != GetConfiguration().ArduinoPort ? arduino : GetConfiguration().ArduinoPort;
+            var newPerson = person != GetConfiguration().PersonNumber ? person : GetConfiguration().PersonNumber;
+            var newFinger = finger != GetConfiguration().FingerNumber ? finger : GetConfiguration().FingerNumber;
+            var newStep = step != GetConfiguration().Step ? step : GetConfiguration().Step;
+
+            var config = new ConfigurationModel
+            {
+                SourcePath = newSrc,
+                DestinationPath = newDest,
+                ArduinoPort = newArduino,
+                PersonNumber = newPerson,
+                FingerNumber = newFinger,
+                Step = newStep
+            };
+
+            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+            File.WriteAllText(configFile, json);
+        }
     }
 }

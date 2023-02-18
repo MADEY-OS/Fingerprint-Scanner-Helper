@@ -7,7 +7,7 @@ namespace FingerprintScannerHelper
 {
     public partial class MainWindow : Window
     {
-        private readonly IMainServices _services = new MainServices();
+        private readonly IMainServices _main = new MainServices();
 
         public MainWindow()
         {
@@ -16,8 +16,8 @@ namespace FingerprintScannerHelper
             SetupWindow setup = new SetupWindow();
             setup.ShowDialog();
 
-            picHolder.Source = _services.GetImage();
-            tbScan.Text = _services.GetScan();
+            picHolder.Source = _main.GetImage();
+            tbScan.Text = _main.GetScanVariant();
 
         }
 
@@ -35,13 +35,15 @@ namespace FingerprintScannerHelper
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            picHolder.Source = _services.GetImage();
-            tbScan.Text = _services.GetScan();
+            //Zrobić przenoszenie plików z src do dst wraz z kasowaniem
+            //Zrobić update configu
+            picHolder.Source = _main.GetImage();
+            tbScan.Text = _main.GetScanVariant();
         }
 
         private void Reject_Click(object sender, RoutedEventArgs e)
         {
-
+            //Zrobić kasowanie plików w src
         }
     }
 }

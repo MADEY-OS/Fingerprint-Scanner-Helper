@@ -9,6 +9,7 @@ namespace FingerprintScannerHelper.Interfaces
         public ConfigurationModel GetConfiguration();
         public List<ScanModel> GetLibrary();
         public BitmapImage GetImage();
-        public string GetScan();
+        public string GetScanVariant();
+        public void ModifyConfiguration(string? src, string? dest, string? arduino, int person, int finger, int step);
     }
 }
