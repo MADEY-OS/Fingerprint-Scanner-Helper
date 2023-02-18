@@ -19,5 +19,20 @@ This app was made to help with image managment. Basicaly the scanner app make ne
 6. Rename images and moving them to destination folder.
 7. Get weight from arduino.
 8. Simple user interface with 2 buttons.
-9. Reject bad images.
-10. Change config file.
+9. Interface shows user which scan is next.
+10. Reject bad images.
+11. Change config file.
+
+### Use case
+Scanner saves image => User clicks button => FHS gets image from source directory => FHS renames image => FHS moves image to destination folder => FHS deletes old directory =>  FHS moves to another variant of scan.
+
+### TODOs
+1. MVVM maybe?
+2. Refactoring(if needed).
+3. Testing.
+
+### Ideas?
+1. With some changes it can serve as universal file moving app.
+2. if you get scanner api, you can make FSH more automatic.
+
+### FEEL FREE to download and modify source code as You desire. I won't take any benefits of it.
