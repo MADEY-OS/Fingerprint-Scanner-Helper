@@ -1,5 +1,5 @@
 # Fingerprint Scanner Helper - FSH
-Simple app that will speed up the scanning process.
+Simple app that will speed up the scanning process. One of the parts of my Diploma work for Bachelor of Engineering.
 
 ### Technology 
 1. .NET 6
