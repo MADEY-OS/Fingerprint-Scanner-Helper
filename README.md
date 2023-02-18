@@ -1,4 +1,4 @@
-# Fingerprint Scanner Helper
+# Fingerprint Scanner Helper - FSH
 Simple app that will speed up the scanning process.
 
 ### Technology 
@@ -24,7 +24,7 @@ This app was made to help with image managment. Basicaly the scanner app make ne
 11. Change config file.
 
 ### Use case
-Scanner saves image => User clicks button => FHS gets image from source directory => FHS renames image => FHS moves image to destination folder => FHS deletes old directory =>  FHS moves to another variant of scan.
+Scanner saves image => User clicks button => FSH gets image from source directory => FSH renames image => FSH moves image to destination folder => FSH deletes old directory =>  FSH moves to another variant of scan.
 
 ### TODOs
 1. MVVM maybe?
