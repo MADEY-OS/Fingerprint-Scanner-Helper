@@ -1,9 +1,0 @@
-{
-  "SourcePath": "C:\\Users\\madej\\Desktop\\Src",
-  "DestinationPath": "C:\\Users\\madej\\Desktop\\Dst",
-  "ArduinoPort": "COM11",
-  "ArduinoBaud": "9600",
-  "PersonNumber": 1,
-  "FingerNumber": 4,
-  "Step": 3
-}
