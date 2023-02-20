@@ -1,4 +1,4 @@
-# Fingerprint Scanner Helper - FSH
+# (WIP) Fingerprint Scanner Helper - FSH
 Simple app that will speed up the scanning process. One of the parts of my Diploma work for Bachelor of Engineering.
 
 ### Technology 
@@ -17,7 +17,7 @@ This app was made to help with image managment. Basicaly the scanner app make ne
 4. Create destination directory(where all of the images were moved).
 5. Delete empty folders from source directory.
 6. Rename images and moving them to destination folder.
-7. Get weight from arduino.
+7. Get weight from arduino via port communication.
 8. Simple user interface with 2 buttons.
 9. Interface shows user which scan is next.
 10. Reject bad images.
