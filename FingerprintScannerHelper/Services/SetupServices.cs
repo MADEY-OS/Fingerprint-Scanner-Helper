@@ -20,7 +20,8 @@ namespace FingerprintScannerHelper.Services
             {
                 SourcePath = baseDir + @"\FSH_src",
                 DestinationPath = baseDir + @"\FSH_dest",
-                ArduinoPort = "8000",
+                ArduinoPort = "COM11",
+                ArduinoBaud = "9600",
                 PersonNumber = 1,
                 FingerNumber = 1,
                 Step = 1

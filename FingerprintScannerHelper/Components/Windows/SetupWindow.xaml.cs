@@ -17,25 +17,26 @@ namespace FingerprintScannerHelper.Components.Windows
             InitializeComponent();
             if (!File.Exists("config.json")) _setup.CreateConfiguration();
             var config = _main.GetConfiguration();
-            TBSrc.Text = config.SourcePath;
-            TBDest.Text = config.DestinationPath;
-            TBArduino.Text = config.ArduinoPort;
+            tbSrc.Text = config.SourcePath;
+            tbDest.Text = config.DestinationPath;
+            tbArduinoPort.Text = config.ArduinoPort;
+            tbArduinoBaud.Text = config.ArduinoBaud;
         }
 
         private void BtnSrc_Click(object sender, RoutedEventArgs e)
         {
-            TBSrc.Text = _setup.FileDialog();
+            tbSrc.Text = _setup.FileDialog();
         }
 
         private void BtnDest_Click(object sender, RoutedEventArgs e)
         {
-            TBDest.Text = _setup.FileDialog();
+            tbDest.Text = _setup.FileDialog();
         }
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
             var config = _main.GetConfiguration();
-            _main.ModifyConfiguration(TBSrc.Text, TBDest.Text, TBArduino.Text, config.PersonNumber, config.FingerNumber, config.Step);
+            _main.ModifyConfiguration(tbSrc.Text, tbDest.Text, tbArduinoPort.Text, tbArduinoBaud.Text, config.PersonNumber, config.FingerNumber, config.Step);
             _setup.CreateVariantLibrary();
             Close();
         }

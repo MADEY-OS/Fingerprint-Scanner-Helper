@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace FingerprintScannerHelper.Services
@@ -27,13 +28,17 @@ namespace FingerprintScannerHelper.Services
 
         public List<ScanModel> GetLibrary()
         {
-            if (!File.Exists(libFile)) return null;
-
-            var jsonFile = File.ReadAllText(libFile);
-
-            List<ScanModel> libJson = JsonConvert.DeserializeObject<List<ScanModel>>(jsonFile);
-
-            return libJson;
+            try
+            {
+                var jsonFile = File.ReadAllText(libFile);
+                //List<ScanModel> libJson = JsonConvert.DeserializeObject<List<ScanModel>>(jsonFile);
+                return JsonConvert.DeserializeObject<List<ScanModel>>(jsonFile); ;
+            }
+            catch
+            {
+                MessageBox.Show("Nie można znaleźć biblioteki!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
         }
 
         public BitmapImage GetImage()
@@ -45,31 +50,39 @@ namespace FingerprintScannerHelper.Services
             return new BitmapImage(new Uri(@"Images/" + fingerNumber + ".png", UriKind.Relative));
         }
 
-        public string GetScanVariant()
+        public ScanModel GetScanVariant()
         {
             var lib = GetLibrary();
             var step = GetConfiguration().Step;
-
-            return lib.FirstOrDefault(s => s.Id == step).Description.ToString();
+            return lib.FirstOrDefault(s => s.Id == step);
         }
 
-        public void ModifyConfiguration(string? src, string? dest, string? arduino, int person, int finger, int step)
+        public void DeleteScan()
         {
-            var newSrc = src != GetConfiguration().SourcePath ? src : GetConfiguration().SourcePath;
-            var newDest = dest != GetConfiguration().DestinationPath ? dest : GetConfiguration().DestinationPath;
-            var newArduino = arduino != GetConfiguration().ArduinoPort ? arduino : GetConfiguration().ArduinoPort;
-            var newPerson = person != GetConfiguration().PersonNumber ? person : GetConfiguration().PersonNumber;
-            var newFinger = finger != GetConfiguration().FingerNumber ? finger : GetConfiguration().FingerNumber;
-            var newStep = step != GetConfiguration().Step ? step : GetConfiguration().Step;
+            var srcPath = GetConfiguration().SourcePath.ToString();
+            try
+            {
+                var fileFolder = Directory.GetDirectories(srcPath).FirstOrDefault();
+                Directory.Delete(fileFolder, true);
+                //dorobić sprawdzacz czy folder ma w środku plik bmp!
+            }
+            catch
+            {
+                MessageBox.Show("Ścieżka źródłowa jest pusta!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
+        public void ModifyConfiguration(string? src, string? dest, string? arduinoPort, string? arduinoBaud, int person, int finger, int step)
+        {
             var config = new ConfigurationModel
             {
-                SourcePath = newSrc,
-                DestinationPath = newDest,
-                ArduinoPort = newArduino,
-                PersonNumber = newPerson,
-                FingerNumber = newFinger,
-                Step = newStep
+                SourcePath = src != GetConfiguration().SourcePath ? src : GetConfiguration().SourcePath,
+                DestinationPath = dest != GetConfiguration().DestinationPath ? dest : GetConfiguration().DestinationPath,
+                ArduinoPort = arduinoPort != GetConfiguration().ArduinoPort ? arduinoPort : GetConfiguration().ArduinoPort,
+                ArduinoBaud = arduinoBaud != GetConfiguration().ArduinoBaud ? arduinoBaud : GetConfiguration().ArduinoBaud,
+                PersonNumber = person != GetConfiguration().PersonNumber ? person : GetConfiguration().PersonNumber,
+                FingerNumber = finger != GetConfiguration().FingerNumber ? finger : GetConfiguration().FingerNumber,
+                Step = step != GetConfiguration().Step ? step : GetConfiguration().Step
             };
 
             string json = JsonConvert.SerializeObject(config, Formatting.Indented);

@@ -1,13 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "4PhycRwMKvLxWXyo5vBX2ngA6cNxD1KOnKzycHss+OoLb2Em02Vuzegv5GNCQlgoH0XJEPAzHDns0Viv0iHNZQ==",
+  "dgSpecHash": "S20yjUpOZzjCKaj7gZcz+vKmydoAM758VksqBHPSyYVr0mykghRmjv/6THela7g5NZD1hx5wtdYEHYlhUgzUgw==",
   "success": true,
   "projectFilePath": "H:\\GitHub\\Fingerprint-Scanner-Helper\\FingerprintScannerHelper\\FingerprintScannerHelper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\madej\\.nuget\\packages\\microsoft.windowsapicodepack-core\\1.1.0\\microsoft.windowsapicodepack-core.1.1.0.nupkg.sha512",
     "C:\\Users\\madej\\.nuget\\packages\\microsoft.windowsapicodepack-shell\\1.1.0\\microsoft.windowsapicodepack-shell.1.1.0.nupkg.sha512",
     "C:\\Users\\madej\\.nuget\\packages\\mvvmessentials.wpf\\1.0.3\\mvvmessentials.wpf.1.0.3.nupkg.sha512",
-    "C:\\Users\\madej\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+    "C:\\Users\\madej\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\madej\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\madej\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\madej\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\madej\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\madej\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\madej\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\madej\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
   ],
   "logs": [
     {
