@@ -35,7 +35,8 @@
                     Margin="10,5,0,0"
                     VerticalAlignment="Center"
                     Click="btnSrc_Click"
-                    Content="Przeglądaj" />
+                    Content="Przeglądaj"
+                    ToolTip="Wybierz ścieżkę źródłową z listy." />
             </WrapPanel>
             <WrapPanel Margin="0,10,0,0">
                 <TextBlock Width="300" Text="Ścieżka docelowa: " />
@@ -51,7 +52,8 @@
                     Margin="10,5,0,0"
                     VerticalAlignment="Center"
                     Click="btnDest_Click"
-                    Content="Przeglądaj" />
+                    Content="Przeglądaj"
+                    ToolTip="Wybierz ścieżke docelową z listy." />
             </WrapPanel>
             <WrapPanel Margin="0,20,0,0">
                 <TextBlock VerticalAlignment="Center" Text="Port arduino:" />
@@ -111,7 +113,8 @@
                 Margin="0,50,0,0"
                 VerticalAlignment="Center"
                 Click="btnSave_Click"
-                Content="Zapisz" />
+                Content="Zapisz"
+                ToolTip="Zapisz konfigurację." />
         </StackPanel>
     </Grid>
 

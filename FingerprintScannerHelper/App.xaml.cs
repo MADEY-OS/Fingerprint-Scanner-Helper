@@ -10,8 +10,6 @@ namespace FingerprintScannerHelper
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //MainWindow = new MainWindow();
-            //MainWindow.Show();
             SetupWindow setupWindow = new SetupWindow();
             setupWindow.Show();
 

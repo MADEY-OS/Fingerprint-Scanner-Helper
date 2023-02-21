@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 H:\GitHub\Fingerprint-Scanner-Helper\FingerprintScannerHelper\App.xaml
 4-376899660
 1898410561
-15610196039
+172107433898
 200-398392201
 Components\Windows\HelpWindow.xaml;Components\Windows\SettingsWindow.xaml;Components\Windows\SetupWindow.xaml;MainWindow.xaml;
 
-False
+True
 

@@ -2,7 +2,8 @@
 {
     public class SecurityModel
     {
-        public bool ShowRejectWarning { get; set; } = true;
-        public bool ShowAcceptWarning { get; set; } = true;
+        public bool SecurityLock { get; set; }
+        public bool ShowRejectWarning { get; set; }
+        public bool ShowMovedConfirmation { get; set; }
     }
 }

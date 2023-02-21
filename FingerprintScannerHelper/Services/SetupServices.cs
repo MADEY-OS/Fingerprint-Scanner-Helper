@@ -1,6 +1,5 @@
 ﻿using FingerprintScannerHelper.Interfaces;
 using FingerprintScannerHelper.Models;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,8 +9,8 @@ namespace FingerprintScannerHelper.Services
 {
     public class SetupServices : ISetupServices
     {
-        private string configFile = "config.json";
-        private string libFile = "lib.json";
+        private readonly string configFile = "config.json";
+        private readonly string libFile = "lib.json";
         private readonly string baseDir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         public void CreateConfiguration()
         {
@@ -31,20 +30,6 @@ namespace FingerprintScannerHelper.Services
             File.WriteAllText(configFile, json);
         }
 
-        public string FileDialog()
-        {
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.InitialDirectory = baseDir;
-            dialog.IsFolderPicker = true;
-
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                string fileUri = new string(dialog.FileName);
-                return fileUri.ToString();
-            }
-
-            return dialog.InitialDirectory.ToString();
-        }
 
         public void CreateVariantLibrary()
         {

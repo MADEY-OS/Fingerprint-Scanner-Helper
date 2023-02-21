@@ -8,13 +8,14 @@ namespace FingerprintScannerHelper.Components.Windows
     public partial class SetupWindow : Window
     {
         private readonly ISetupServices _setup = new SetupServices();
-        private readonly IMainServices _main = new MainServices();
+        private readonly ISharedServices _shared = new SharedServices();
 
         public SetupWindow()
         {
             InitializeComponent();
+            DataContext = _shared.GetConfiguration();
             if (!File.Exists("config.json")) _setup.CreateConfiguration();
-            var config = _main.GetConfiguration();
+            var config = _shared.GetConfiguration();
             tbSrc.Text = config.SourcePath;
             tbDest.Text = config.DestinationPath;
             tbArduinoPort.Text = config.ArduinoPort;
@@ -23,18 +24,18 @@ namespace FingerprintScannerHelper.Components.Windows
 
         private void BtnSrc_Click(object sender, RoutedEventArgs e)
         {
-            tbSrc.Text = _setup.FileDialog();
+            tbSrc.Text = _shared.FileDialog();
         }
 
         private void BtnDest_Click(object sender, RoutedEventArgs e)
         {
-            tbDest.Text = _setup.FileDialog();
+            tbDest.Text = _shared.FileDialog();
         }
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            var config = _main.GetConfiguration();
-            _main.ModifyConfiguration(tbSrc.Text, tbDest.Text, tbArduinoPort.Text, tbArduinoBaud.Text, config.PersonNumber, config.FingerNumber, config.Step);
+            var config = _shared.GetConfiguration();
+            _shared.ModifyConfiguration(tbSrc.Text, tbDest.Text, tbArduinoPort.Text, tbArduinoBaud.Text, config.PersonNumber, config.FingerNumber, config.Step);
             _setup.CreateVariantLibrary();
 
             MainWindow mainWindow = new MainWindow();
