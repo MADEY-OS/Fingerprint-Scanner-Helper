@@ -17,9 +17,6 @@ namespace FingerprintScannerHelper
         {
             InitializeComponent();
 
-            SetupWindow setup = new SetupWindow();
-            setup.ShowDialog();
-
             picHolder.Source = _main.GetImage();
             tbScan.Text = _main.GetScanVariant().Description;
             _serialPort = new SerialPort();
@@ -38,6 +35,7 @@ namespace FingerprintScannerHelper
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();
+            Close();
         }
 
         private bool MoveScan() //refaktor i wrzutka do main.

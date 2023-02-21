@@ -17,13 +17,16 @@ namespace FingerprintScannerHelper.Services
 
         public ConfigurationModel GetConfiguration()
         {
-            if (!File.Exists(configFile)) return null;
-
-            var jsonFile = File.ReadAllText(configFile);
-
-            ConfigurationModel configJson = JsonConvert.DeserializeObject<ConfigurationModel>(jsonFile);
-
-            return configJson;
+            try
+            {
+                var jsonFile = File.ReadAllText(configFile);
+                return JsonConvert.DeserializeObject<ConfigurationModel>(jsonFile);
+            }
+            catch
+            {
+                MessageBox.Show("Nie można znaleźć konfiguracji!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
         }
 
         public List<ScanModel> GetLibrary()
@@ -31,8 +34,7 @@ namespace FingerprintScannerHelper.Services
             try
             {
                 var jsonFile = File.ReadAllText(libFile);
-                //List<ScanModel> libJson = JsonConvert.DeserializeObject<List<ScanModel>>(jsonFile);
-                return JsonConvert.DeserializeObject<List<ScanModel>>(jsonFile); ;
+                return JsonConvert.DeserializeObject<List<ScanModel>>(jsonFile);
             }
             catch
             {
@@ -43,18 +45,30 @@ namespace FingerprintScannerHelper.Services
 
         public BitmapImage GetImage()
         {
-            if (GetConfiguration() is null) return new BitmapImage(new Uri(@"Images/base.png", UriKind.Relative));
-
-            var fingerNumber = GetConfiguration().FingerNumber.ToString();
-
-            return new BitmapImage(new Uri(@"Images/" + fingerNumber + ".png", UriKind.Relative));
+            try
+            {
+                var fingerNumber = GetConfiguration().FingerNumber.ToString();
+                return new BitmapImage(new Uri(@"Images/" + fingerNumber + ".png", UriKind.Relative));
+            }
+            catch
+            {
+                MessageBox.Show("Nie można znaleźć obrazów!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return new BitmapImage(new Uri(@"Images/base.png", UriKind.Relative));
+            }
         }
 
         public ScanModel GetScanVariant()
         {
-            var lib = GetLibrary();
-            var step = GetConfiguration().Step;
-            return lib.FirstOrDefault(s => s.Id == step);
+            try
+            {
+                var step = GetConfiguration().Step;
+                return GetLibrary().FirstOrDefault(s => s.Id == step);
+            }
+            catch
+            {
+                MessageBox.Show("Nie można znaleźć wariantów skanowania!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
         }
 
         public void DeleteScan()
@@ -64,7 +78,6 @@ namespace FingerprintScannerHelper.Services
             {
                 var fileFolder = Directory.GetDirectories(srcPath).FirstOrDefault();
                 Directory.Delete(fileFolder, true);
-                //dorobić sprawdzacz czy folder ma w środku plik bmp!
             }
             catch
             {

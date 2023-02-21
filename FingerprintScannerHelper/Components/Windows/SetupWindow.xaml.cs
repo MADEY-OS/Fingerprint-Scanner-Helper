@@ -10,8 +10,6 @@ namespace FingerprintScannerHelper.Components.Windows
         private readonly ISetupServices _setup = new SetupServices();
         private readonly IMainServices _main = new MainServices();
 
-
-
         public SetupWindow()
         {
             InitializeComponent();
@@ -38,6 +36,9 @@ namespace FingerprintScannerHelper.Components.Windows
             var config = _main.GetConfiguration();
             _main.ModifyConfiguration(tbSrc.Text, tbDest.Text, tbArduinoPort.Text, tbArduinoBaud.Text, config.PersonNumber, config.FingerNumber, config.Step);
             _setup.CreateVariantLibrary();
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             Close();
         }
     }

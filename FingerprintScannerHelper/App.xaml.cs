@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using FingerprintScannerHelper.Components.Windows;
+using System.Windows;
 
 namespace FingerprintScannerHelper
 {
@@ -9,8 +10,10 @@ namespace FingerprintScannerHelper
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new MainWindow();
-            MainWindow.Show();
+            //MainWindow = new MainWindow();
+            //MainWindow.Show();
+            SetupWindow setupWindow = new SetupWindow();
+            setupWindow.Show();
 
             base.OnStartup(e);
         }
