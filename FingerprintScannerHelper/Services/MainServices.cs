@@ -2,35 +2,37 @@
 using FingerprintScannerHelper.Models;
 using System;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace FingerprintScannerHelper.Services
 {
     public class MainServices : IMainServices
     {
-        private readonly ISharedServices _shared = new SharedServices();
+        private readonly ISharedServices _sharedServices = new SharedServices();
+        private readonly ISecurityServices _securityServices = new SecurityServices();
 
-        public BitmapImage GetImage()
+        public string GetImage()
         {
-            var config = _shared.GetConfiguration();
+            string workingDirectory = Environment.CurrentDirectory;
             try
             {
+                var config = _sharedServices.GetConfiguration();
                 var fingerNumber = config.FingerNumber.ToString();
-                return new BitmapImage(new Uri(@"Images/" + fingerNumber + ".png", UriKind.Relative));
+                return Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Images\" + fingerNumber + ".png";
             }
             catch
             {
                 MessageBox.Show("Nie można znaleźć wskazówek!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                return new BitmapImage(new Uri(@"Images/base.png", UriKind.Relative));
+                return Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Images\base.png";
             }
         }
 
         public ScanModel GetScanVariant()
         {
-            var config = _shared.GetConfiguration();
-            var lib = _shared.GetLibrary();
+            var config = _sharedServices.GetConfiguration();
+            var lib = _sharedServices.GetLibrary();
             try
             {
                 var step = config.Step;
@@ -43,84 +45,92 @@ namespace FingerprintScannerHelper.Services
             }
         }
 
-        public void DeleteScan()
+        public bool DeleteScan()
         {
-            var config = _shared.GetConfiguration();
-            var srcPath = config.SourcePath.ToString();
+            var srcPath = _sharedServices.GetConfiguration().SourcePath;
             try
             {
                 var fileFolder = Directory.GetDirectories(srcPath).FirstOrDefault();
                 Directory.Delete(fileFolder, true);
+                return true;
             }
             catch
             {
-                MessageBox.Show("Ścieżka źródłowa jest pusta!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
+
         }
 
-        public void MoveScan(string serialReading)
+        public bool MoveScan()
         {
-
-            var config = _shared.GetConfiguration();
-            var srcPath = config.SourcePath.ToString();
-            if (!Directory.Exists(srcPath)) Directory.CreateDirectory(srcPath);
-            var destPath = config.DestinationPath.ToString();
-            if (!Directory.Exists(destPath)) Directory.CreateDirectory(destPath);
-            var personNumber = config.PersonNumber;
-            var fingerNumber = config.FingerNumber;
+            var config = _sharedServices.GetConfiguration();
             var stepNumber = config.Step;
             var variantName = GetScanVariant().Name;
-            var weight = serialReading.Remove(serialReading.Length - 1);
 
-            var fileFolder = Directory.GetDirectories(srcPath).FirstOrDefault();
+            if (!Directory.Exists(config.SourcePath) || !Directory.Exists(config.DestinationPath)) return false;
 
-            if (fileFolder != null)
+            var fileFolder = Directory.GetDirectories(config.SourcePath).FirstOrDefault();
+
+            if (fileFolder == null) return false;
+
+            var scanFile = Directory.GetFiles(fileFolder).FirstOrDefault();
+
+            if (scanFile == null) return false;
+
+            var newFile = config.DestinationPath + @"\" + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + ".bmp";
+
+            if (_securityServices.GetSecurityRule().UseLibra == true)
             {
-                var file = Directory.GetFiles(fileFolder).FirstOrDefault();
-
-                var formatedFinger = fingerNumber == 10 ? fingerNumber.ToString() : "0" + fingerNumber.ToString();
-                var formatedPerson = "000" + personNumber.ToString();
-
-                if (personNumber >= 10 && personNumber < 100) formatedPerson = "00" + personNumber.ToString();
-                if (personNumber >= 100 && personNumber < 1000) formatedPerson = "0" + personNumber.ToString();
-
-                var newFile = destPath + @"\" + formatedPerson + "_" + formatedFinger + "_" + variantName + ".bmp";
-                if (config.Step == 2 || config.Step == 3) newFile = destPath + @"\" + formatedPerson + "_" + formatedFinger + "_" + variantName + weight + ".bmp";
-
                 try
                 {
-                    File.Move(file, newFile);
-                    Directory.Delete(fileFolder);
-
-                    var newFingerNumber = fingerNumber == 10 ? 1 : fingerNumber + 1;
-                    var newStep = fingerNumber == 10 ? stepNumber + 1 : stepNumber;
-                    var newPersonNumber = newStep > 23 ? personNumber + 1 : personNumber;
-                    if (newStep > 23) newStep = 1;
-
-                    _shared.ModifyConfiguration(config.SourcePath, config.DestinationPath, config.ArduinoPort, config.ArduinoBaud, newPersonNumber, newFingerNumber, newStep);
+                    using (SerialPort port = new SerialPort(_sharedServices.GetConfiguration().PortName, int.Parse(_sharedServices.GetConfiguration().PortBaud)))
+                    {
+                        port.Open();
+                        var reading = port.ReadLine();
+                        var weight = reading.Remove(reading.Length - 1);
+                        if (config.Step == 2 || config.Step == 3) newFile = config.DestinationPath + @"\" + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + weight + ".bmp";
+                    }
                 }
                 catch
                 {
-                    MessageBoxResult result = MessageBox.Show("W folderze istnieje już plik o takiej nazwie. Czy chesz go zamienić?", "Uwaga", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        File.Delete(newFile);
-                        File.Move(file, newFile);
-                        Directory.Delete(fileFolder);
-
-                        var newFingerNumber = fingerNumber == 10 ? 1 : fingerNumber + 1;
-                        var newStep = fingerNumber == 10 ? stepNumber + 1 : stepNumber;
-                        var newPersonNumber = newStep > 23 ? personNumber + 1 : personNumber;
-                        if (newStep > 23) newStep = 1;
-
-                        _shared.ModifyConfiguration(config.SourcePath, config.DestinationPath, config.ArduinoPort, config.ArduinoBaud, newPersonNumber, newFingerNumber, newStep);
-                    }
+                    return false;
                 }
             }
-            else
+
+            try
             {
-                MessageBox.Show("W folderze źródłowym nie ma skanów.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                File.Move(scanFile, newFile);
+                Directory.Delete(fileFolder);
+
+                var newFingerNumber = config.FingerNumber == 10 ? 1 : config.FingerNumber + 1;
+                var newStep = config.FingerNumber == 10 ? stepNumber + 1 : stepNumber;
+                var newPersonNumber = newStep > 23 ? config.PersonNumber + 1 : config.PersonNumber;
+                if (newStep > 23) newStep = 1;
+
+                _sharedServices.ModifyConfiguration(config.SourcePath, config.DestinationPath, config.PortName, config.PortBaud, newPersonNumber, newFingerNumber, newStep);
+                return true;
             }
+            catch
+            {
+                MessageBoxResult result = MessageBox.Show("W folderze istnieje już plik o takiej nazwie. Czy chesz go zamienić?", "Uwaga", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (result == MessageBoxResult.Yes)
+                {
+                    File.Delete(newFile);
+                    File.Move(scanFile, newFile);
+                    Directory.Delete(fileFolder);
+
+                    var newFingerNumber = config.FingerNumber == 10 ? 1 : config.FingerNumber + 1;
+                    var newStep = config.FingerNumber == 10 ? stepNumber + 1 : stepNumber;
+                    var newPersonNumber = newStep > 23 ? config.PersonNumber + 1 : config.PersonNumber;
+                    if (newStep > 23) newStep = 1;
+
+                    _sharedServices.ModifyConfiguration(config.SourcePath, config.DestinationPath, config.PortName, config.PortBaud, newPersonNumber, newFingerNumber, newStep);
+                    return true;
+                }
+
+                return false;
+            }
+
         }
     }
 }

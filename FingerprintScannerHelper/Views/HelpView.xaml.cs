@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FingerprintScannerHelper.Components.Windows
+namespace FingerprintScannerHelper.Views
 {
     /// <summary>
-    /// Interaction logic for HelpWindow.xaml
+    /// Interaction logic for HelpView.xaml
     /// </summary>
-    public partial class HelpWindow : Window
+    public partial class HelpView : UserControl
     {
-        public HelpWindow()
+        public HelpView()
         {
             InitializeComponent();
         }
