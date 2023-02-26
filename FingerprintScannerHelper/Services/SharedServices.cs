@@ -43,21 +43,29 @@ namespace FingerprintScannerHelper.Services
             }
         }
 
-        public void ModifyConfiguration(string src, string dest, string arduinoPort, string arduinoBaud, int person, int finger, int step)
+        public bool ModifyConfiguration(string src, string dest, string arduinoPort, string arduinoBaud, int person, int finger, int step)
         {
-            var config = new ConfigurationModel
+            try
             {
-                SourcePath = src != GetConfiguration().SourcePath ? src : GetConfiguration().SourcePath,
-                DestinationPath = dest != GetConfiguration().DestinationPath ? dest : GetConfiguration().DestinationPath,
-                PortName = arduinoPort != GetConfiguration().PortName ? arduinoPort : GetConfiguration().PortName,
-                PortBaud = arduinoBaud != GetConfiguration().PortBaud ? arduinoBaud : GetConfiguration().PortBaud,
-                PersonNumber = person != GetConfiguration().PersonNumber ? person : GetConfiguration().PersonNumber,
-                FingerNumber = finger != GetConfiguration().FingerNumber ? finger : GetConfiguration().FingerNumber,
-                Step = step != GetConfiguration().Step ? step : GetConfiguration().Step
-            };
+                var config = new ConfigurationModel
+                {
+                    SourcePath = src != GetConfiguration().SourcePath ? src : GetConfiguration().SourcePath,
+                    DestinationPath = dest != GetConfiguration().DestinationPath ? dest : GetConfiguration().DestinationPath,
+                    PortName = arduinoPort != GetConfiguration().PortName ? arduinoPort : GetConfiguration().PortName,
+                    PortBaud = arduinoBaud != GetConfiguration().PortBaud ? arduinoBaud : GetConfiguration().PortBaud,
+                    PersonNumber = person != GetConfiguration().PersonNumber ? person : GetConfiguration().PersonNumber,
+                    FingerNumber = finger != GetConfiguration().FingerNumber ? finger : GetConfiguration().FingerNumber,
+                    Step = step != GetConfiguration().Step ? step : GetConfiguration().Step
+                };
 
-            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-            File.WriteAllText(configFile, json);
+                string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+                File.WriteAllText(configFile, json);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<ScanModel> GetLibrary()

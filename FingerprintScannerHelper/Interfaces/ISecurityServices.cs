@@ -6,6 +6,6 @@ namespace FingerprintScannerHelper.Interfaces
     {
         public void CreateSecurityRules();
         public SecurityModel GetSecurityRule();
-        public void ModifySecurityRules(bool useLibra, bool libraLock, bool movedConfirmation, bool rejectConfirmation, bool rejectWarning);
+        public bool ModifySecurityRules(bool useLibra, bool movedConfirmation, bool rejectConfirmation, bool rejectWarning);
     }
 }

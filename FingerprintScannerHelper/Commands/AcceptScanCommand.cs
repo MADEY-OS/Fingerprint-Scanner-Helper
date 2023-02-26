@@ -20,8 +20,8 @@ namespace FingerprintScannerHelper.Commands
         {
             var result = _mainServices.MoveScan();
 
-            if (result is false) MessageBox.Show("Nie udało się przenieść skanu.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (result is true && _securityServices.GetSecurityRule().ShowMovedConfirmation is true) MessageBox.Show("Transfer skanu zakończony sukcesem!", "Sukces", MessageBoxButton.OK);
+            if (result is false) MessageBox.Show("Transfer skanu zakończył się niepowodzeniem.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (result is true && _securityServices.GetSecurityRule().ShowMovedConfirmation is true) MessageBox.Show("Transfer skanu zakończył się sukcesem!", "Sukces", MessageBoxButton.OK);
 
             _homeViewModel.VariantDescription = _mainServices.GetScanVariant().Description;
             _homeViewModel.VariantImage = _mainServices.GetImage();

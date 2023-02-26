@@ -79,21 +79,24 @@ namespace FingerprintScannerHelper.Services
 
             var newFile = config.DestinationPath + @"\" + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + ".bmp";
 
-            if (_securityServices.GetSecurityRule().UseLibra == true)
+            if (config.Step == 2 || config.Step == 3)
             {
-                try
+                if (_securityServices.GetSecurityRule().UseLibra == true)
                 {
-                    using (SerialPort port = new SerialPort(_sharedServices.GetConfiguration().PortName, int.Parse(_sharedServices.GetConfiguration().PortBaud)))
+                    try
                     {
-                        port.Open();
-                        var reading = port.ReadLine();
-                        var weight = reading.Remove(reading.Length - 1);
-                        if (config.Step == 2 || config.Step == 3) newFile = config.DestinationPath + @"\" + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + weight + ".bmp";
+                        using (SerialPort port = new SerialPort(_sharedServices.GetConfiguration().PortName, int.Parse(_sharedServices.GetConfiguration().PortBaud)))
+                        {
+                            port.Open();
+                            var reading = port.ReadLine();
+                            var weight = reading.Remove(reading.Length - 1);
+                            newFile = config.DestinationPath + @"\" + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + weight + ".bmp";
+                        }
                     }
-                }
-                catch
-                {
-                    return false;
+                    catch
+                    {
+                        return false;
+                    }
                 }
             }
 
