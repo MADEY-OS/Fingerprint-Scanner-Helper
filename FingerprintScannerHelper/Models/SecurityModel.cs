@@ -2,8 +2,9 @@
 {
     public class SecurityModel
     {
-        public bool SecurityLock { get; set; }
-        public bool ShowRejectWarning { get; set; }
+        public bool UseLibra { get; set; }
         public bool ShowMovedConfirmation { get; set; }
+        public bool ShowRejectWarning { get; set; }
+        public bool ShowRejectConfirmation { get; set; }
     }
 }

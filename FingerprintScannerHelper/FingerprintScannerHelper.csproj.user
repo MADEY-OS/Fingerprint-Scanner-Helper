@@ -9,27 +9,39 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Components\Windows\HelpWindow.xaml.cs">
+    <Compile Update="Views\HelpView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Components\Windows\SettingsWindow.xaml.cs">
+    <Compile Update="Views\SecurityView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Components\Windows\SetupWindow.xaml.cs">
+    <Compile Update="Views\SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SetupView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Components\Windows\HelpWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Components\Windows\SettingsWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Components\Windows\SetupWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SecurityView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SetupView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -12,22 +12,25 @@ namespace FingerprintScannerHelper.Services
         private readonly string configFile = "config.json";
         private readonly string libFile = "lib.json";
         private readonly string baseDir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
         public void CreateConfiguration()
         {
-
-            var config = new ConfigurationModel
+            if (!File.Exists(configFile))
             {
-                SourcePath = baseDir + @"\FSH_src",
-                DestinationPath = baseDir + @"\FSH_dest",
-                ArduinoPort = "COM11",
-                ArduinoBaud = "9600",
-                PersonNumber = 1,
-                FingerNumber = 1,
-                Step = 1
-            };
+                var config = new ConfigurationModel
+                {
+                    SourcePath = baseDir + @"\FSH_src",
+                    DestinationPath = baseDir + @"\FSH_dest",
+                    PortName = "COM3",
+                    PortBaud = "9600",
+                    PersonNumber = 1,
+                    FingerNumber = 1,
+                    Step = 1
+                };
 
-            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-            File.WriteAllText(configFile, json);
+                string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+                File.WriteAllText(configFile, json);
+            }
         }
 
 

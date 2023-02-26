@@ -2,6 +2,34 @@
     x:Class="FingerprintScannerHelper.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:FingerprintScannerHelper">
-    <Application.Resources />
+    xmlns:local="clr-namespace:FingerprintScannerHelper"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:viewmodels="clr-namespace:FingerprintScannerHelper.ViewModels"
+    xmlns:views="clr-namespace:FingerprintScannerHelper.Views">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewmodels:SetupViewModel}">
+                <views:SetupView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+                <views:SettingsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SecurityViewModel}">
+                <views:SecurityView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:HelpViewModel}">
+                <views:HelpView />
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme
+                    BaseTheme="Light"
+                    PrimaryColor="DeepPurple"
+                    SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
