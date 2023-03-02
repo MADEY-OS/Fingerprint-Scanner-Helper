@@ -13,33 +13,29 @@ namespace FingerprintScannerHelper.Services
         {
             var rules = new SecurityModel
             {
-                UseLibra = true,
                 ShowMovedConfirmation = true,
                 ShowRejectConfirmation = true,
                 ShowRejectWarning = true,
             };
+
             string json = JsonConvert.SerializeObject(rules, Formatting.Indented);
             File.WriteAllText(secFile, json);
         }
 
-        public SecurityModel GetSecurityRule()
+        public SecurityModel GetSecurityRules()
         {
             var jsonFile = File.ReadAllText(secFile);
             return JsonConvert.DeserializeObject<SecurityModel>(jsonFile);
         }
 
-        public bool ModifySecurityRules(bool useLibra, bool movedConfirmation, bool rejectConfirmation, bool rejectWarning)
+        public bool ModifySecurityRules(bool? movedConfirmation, bool? rejectConfirmation, bool? rejectWarning)
         {
             try
             {
-                var rules = GetSecurityRule();
-                var newRules = new SecurityModel
-                {
-                    UseLibra = useLibra != rules.UseLibra ? useLibra : rules.UseLibra,
-                    ShowMovedConfirmation = movedConfirmation != rules.ShowMovedConfirmation ? movedConfirmation : rules.ShowMovedConfirmation,
-                    ShowRejectConfirmation = rejectConfirmation != rules.ShowRejectConfirmation ? rejectConfirmation : rules.ShowRejectConfirmation,
-                    ShowRejectWarning = rejectWarning != rules.ShowRejectWarning ? rejectWarning : rules.ShowRejectWarning,
-                };
+                SecurityModel newRules = GetSecurityRules();
+                if (movedConfirmation is not null) newRules.ShowMovedConfirmation = movedConfirmation;
+                if (rejectConfirmation is not null) newRules.ShowRejectConfirmation = rejectConfirmation;
+                if (rejectWarning is not null) newRules.ShowRejectWarning = rejectWarning;
 
                 string json = JsonConvert.SerializeObject(newRules, Formatting.Indented);
                 File.WriteAllText(secFile, json);

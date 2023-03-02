@@ -7,7 +7,7 @@ namespace FingerprintScannerHelper.Interfaces
     {
         public string FileDialog();
         public ConfigurationModel GetConfiguration();
-        public bool ModifyConfiguration(string? src, string? dest, string? arduinoPort, string? arduinoBaud, int person, int finger, int step);
+        public bool ModifyConfiguration(string? src = null, string? dest = null, string? portName = null, string? portBaud = null, int? person = null, int? finger = null, int? step = null, bool? useLibra = null, bool? generatePersonNumberFolder = null);
         public List<ScanModel> GetLibrary();
         public string GetHelp();
     }

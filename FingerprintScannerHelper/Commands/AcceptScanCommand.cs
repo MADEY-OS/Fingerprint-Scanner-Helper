@@ -18,13 +18,21 @@ namespace FingerprintScannerHelper.Commands
 
         public override void Execute(object? parameter)
         {
-            var result = _mainServices.MoveScan();
+            var result = _mainServices.MoveScan(_homeViewModel.LibraReading);
 
-            if (result is false) MessageBox.Show("Transfer skanu zakończył się niepowodzeniem.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (result is true && _securityServices.GetSecurityRule().ShowMovedConfirmation is true) MessageBox.Show("Transfer skanu zakończył się sukcesem!", "Sukces", MessageBoxButton.OK);
+            if (result is true && _securityServices.GetSecurityRules().ShowMovedConfirmation is true)
+            {
+                MessageBox.Show("Transfer skanu zakończył się sukcesem!", "Sukces", MessageBoxButton.OK);
+                _homeViewModel.LibraReading = string.Empty;
+                _homeViewModel.VariantDescription = _mainServices.GetScanVariant().Description;
+                _homeViewModel.VariantImage = _mainServices.GetImage();
+            }
+            else
+            {
+                MessageBox.Show("Transfer skanu zakończył się niepowodzeniem.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
-            _homeViewModel.VariantDescription = _mainServices.GetScanVariant().Description;
-            _homeViewModel.VariantImage = _mainServices.GetImage();
+            _homeViewModel.ShowLibra = _mainServices.GetScanVariant().Id > 3 ? "Collapsed" : "Visible";
         }
     }
 }

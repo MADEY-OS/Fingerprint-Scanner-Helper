@@ -11,7 +11,6 @@ namespace FingerprintScannerHelper.Services
     public class MainServices : IMainServices
     {
         private readonly ISharedServices _sharedServices = new SharedServices();
-        private readonly ISecurityServices _securityServices = new SecurityServices();
 
         public string GetImage()
         {
@@ -20,12 +19,12 @@ namespace FingerprintScannerHelper.Services
             {
                 var config = _sharedServices.GetConfiguration();
                 var fingerNumber = config.FingerNumber.ToString();
-                return Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Images\" + fingerNumber + ".png";
+                return @"\Images\" + fingerNumber + ".png";
             }
             catch
             {
                 MessageBox.Show("Nie można znaleźć wskazówek!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                return Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Images\base.png";
+                return @"\Images\base.png";
             }
         }
 
@@ -61,27 +60,30 @@ namespace FingerprintScannerHelper.Services
 
         }
 
-        public bool MoveScan()
+        public bool MoveScan(string weight)
         {
             var config = _sharedServices.GetConfiguration();
             var stepNumber = config.Step;
             var variantName = GetScanVariant().Name;
-
-            if (!Directory.Exists(config.SourcePath) || !Directory.Exists(config.DestinationPath)) return false;
-
             var fileFolder = Directory.GetDirectories(config.SourcePath).FirstOrDefault();
-
-            if (fileFolder == null) return false;
-
             var scanFile = Directory.GetFiles(fileFolder).FirstOrDefault();
+            string newDirectory;
 
-            if (scanFile == null) return false;
-
-            var newFile = config.DestinationPath + @"\" + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + ".bmp";
-
-            if (config.Step == 2 || config.Step == 3)
+            if (config.GeneratePersonNumberFolder is true)
             {
-                if (_securityServices.GetSecurityRule().UseLibra == true)
+                newDirectory = config.DestinationPath + @"\" + config.PersonNumber.ToString() + @"\";
+                if (!File.Exists(newDirectory)) Directory.CreateDirectory(newDirectory);
+            }
+            else
+            {
+                newDirectory = config.DestinationPath + @"\";
+            }
+
+            var newFile = newDirectory + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + ".bmp";
+
+            if (config.Step == 1 || config.Step == 2 || config.Step == 3)
+            {
+                if (config.UseLibra == true)
                 {
                     try
                     {
@@ -89,14 +91,19 @@ namespace FingerprintScannerHelper.Services
                         {
                             port.Open();
                             var reading = port.ReadLine();
-                            var weight = reading.Remove(reading.Length - 1);
-                            newFile = config.DestinationPath + @"\" + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + weight + ".bmp";
+                            var libraWeight = reading.Remove(reading.Length - 1);
+                            newFile = newDirectory + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + libraWeight + ".bmp";
                         }
                     }
                     catch
                     {
                         return false;
                     }
+                }
+                else
+                {
+                    if (weight is null) return false;
+                    newFile = newDirectory + config.PersonNumber.ToString().PadLeft(4, '0') + "_" + config.FingerNumber.ToString().PadLeft(2, '0') + "_" + variantName + weight + ".bmp";
                 }
             }
 
@@ -130,10 +137,11 @@ namespace FingerprintScannerHelper.Services
                     _sharedServices.ModifyConfiguration(config.SourcePath, config.DestinationPath, config.PortName, config.PortBaud, newPersonNumber, newFingerNumber, newStep);
                     return true;
                 }
-
-                return false;
+                else
+                {
+                    return false;
+                }
             }
-
         }
     }
 }

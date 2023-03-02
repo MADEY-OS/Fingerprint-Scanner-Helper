@@ -24,13 +24,6 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
             <WrapPanel Margin="0,10,0,0">
-                <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseLibra, Mode=TwoWay}" />
-                <TextBlock
-                    Margin="10,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="Używaj wagi." />
-            </WrapPanel>
-            <WrapPanel Margin="0,10,0,0">
                 <CheckBox VerticalAlignment="Center" IsChecked="{Binding MoveConfirm, Mode=TwoWay}" />
                 <TextBlock
                     Margin="10,0,0,0"
@@ -38,18 +31,18 @@
                     Text="Pokazuj potwierdzenie przeniesienia obrazu." />
             </WrapPanel>
             <WrapPanel Margin="0,10,0,0">
+                <CheckBox VerticalAlignment="Center" IsChecked="{Binding RejectConfirm, Mode=TwoWay}" />
+                <TextBlock
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Pokazuj potwierdzenie odrzucenia obrazu." />
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0">
                 <CheckBox VerticalAlignment="Center" IsChecked="{Binding RejectWarning, Mode=TwoWay}" />
                 <TextBlock
                     Margin="10,0,0,0"
                     VerticalAlignment="Center"
                     Text="Pokazuj ostrzeżenie przed odrzuceniem obrazu." />
-            </WrapPanel>
-            <WrapPanel Margin="0,10,0,0">
-                <CheckBox VerticalAlignment="Center" IsChecked="{Binding RejectConfirm, Mode=TwoWay}" />
-                <TextBlock
-                    Margin="10,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="Pokazuj potwierzenie odrzucenia obrazu." />
             </WrapPanel>
             <Button
                 Margin="0,30,0,0"

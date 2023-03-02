@@ -25,7 +25,9 @@ namespace FingerprintScannerHelper.Services
                     PortBaud = "9600",
                     PersonNumber = 1,
                     FingerNumber = 1,
-                    Step = 1
+                    Step = 1,
+                    UseLibra = true,
+                    GeneratePersonNumberFolder = true,
                 };
 
                 string json = JsonConvert.SerializeObject(config, Formatting.Indented);

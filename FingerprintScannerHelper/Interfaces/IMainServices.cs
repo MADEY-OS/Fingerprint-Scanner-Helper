@@ -7,6 +7,6 @@ namespace FingerprintScannerHelper.Interfaces
         public string GetImage();
         public ScanModel GetScanVariant();
         public bool DeleteScan();
-        public bool MoveScan();
+        public bool MoveScan(string weight);
     }
 }

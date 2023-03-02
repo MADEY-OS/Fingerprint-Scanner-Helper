@@ -5,7 +5,7 @@ namespace FingerprintScannerHelper.Interfaces
     public interface ISecurityServices
     {
         public void CreateSecurityRules();
-        public SecurityModel GetSecurityRule();
-        public bool ModifySecurityRules(bool useLibra, bool movedConfirmation, bool rejectConfirmation, bool rejectWarning);
+        public SecurityModel GetSecurityRules();
+        public bool ModifySecurityRules(bool? movedConfirmation = null, bool? rejectConfirmation = null, bool? rejectWarning = null);
     }
 }

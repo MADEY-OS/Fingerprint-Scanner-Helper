@@ -26,7 +26,7 @@ namespace FingerprintScannerHelper.Commands
             {
                 case "Home": _mainViewModel.SelectedViewModel = new HomeViewModel(); break;
                 case "Settings": _mainViewModel.SelectedViewModel = new SettingsViewModel(_mainViewModel); break;
-                case "Security": _mainViewModel.SelectedViewModel = new SecurityViewModel(); break;
+                case "Security": _mainViewModel.SelectedViewModel = new SecurityViewModel(_mainViewModel); break;
                 case "Help": _mainViewModel.SelectedViewModel = new HelpViewModel(); break;
                 default: _mainViewModel.SelectedViewModel = new HomeViewModel(); break;
             }

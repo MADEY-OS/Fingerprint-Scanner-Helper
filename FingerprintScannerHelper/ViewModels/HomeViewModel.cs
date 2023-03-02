@@ -18,18 +18,16 @@ namespace FingerprintScannerHelper.ViewModels
         private string _variantDescription;
         public string VariantDescription { get => _variantDescription; set { _variantDescription = value; OnPropertyChanged(); } }
 
-        private bool _isConnectedToLibra = true;
-        public bool IsConnectedToLibra { get => _isConnectedToLibra; set { _isConnectedToLibra = value; OnPropertyChanged(); } }
+        private string _showLibra;
+        public string ShowLibra { get => _showLibra; set { _showLibra = value; OnPropertyChanged(); } }
 
-        private string _serialReading;
-        public string SerialReading { get => _serialReading; set { _serialReading = value; OnPropertyChanged(); } }
-
-        private bool _clearReading;
-        public bool ClearReading { get => _clearReading; set { _clearReading = value; OnPropertyChanged(); } }
+        private string _libraReading;
+        public string LibraReading { get => _libraReading; set { _libraReading = value; OnPropertyChanged(); } }
 
         public HomeViewModel()
         {
             VariantImage = _mainServices.GetImage();
+            ShowLibra = _mainServices.GetScanVariant().Id > 3 ? "Collapsed" : "Visible";
             VariantDescription = _mainServices.GetScanVariant().Description;
 
             RejectCommand = new RejectScanCommand(this);

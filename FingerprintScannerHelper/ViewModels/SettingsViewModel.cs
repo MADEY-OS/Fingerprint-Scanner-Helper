@@ -12,25 +12,40 @@ namespace FingerprintScannerHelper.ViewModels
         private readonly MainViewModel _mainViewModel;
         public ICommand OpenFileDialog { get; set; }
         public ICommand SaveConfiguration { get; set; }
+        public ICommand ToggleLibraSettings { get; set; }
 
         private ObservableCollection<string> _scanVariants;
+        public ObservableCollection<string> ScanVariants { get => _scanVariants; set { _scanVariants = value; } }
 
         private string _sourcePath;
-        private string _destinationPath;
-        private string _portName;
-        private string _portBaud;
-        private string _personNumber;
-        private int _selectedVariant;
-        private int _selectedFinger;
-
         public string SourcePath { get => _sourcePath; set { _sourcePath = value; OnPropertyChanged(); } }
+
+        private string _destinationPath;
         public string DestinationPath { get => _destinationPath; set { _destinationPath = value; OnPropertyChanged(); } }
+
+        private string _portName;
         public string PortName { get => _portName; set { _portName = value; OnPropertyChanged(); } }
+
+        private string _portBaud;
         public string PortBaud { get => _portBaud; set { _portBaud = value; OnPropertyChanged(); } }
+
+        private string _personNumber;
         public string PersonNumber { get => _personNumber; set { _personNumber = value; OnPropertyChanged(); } }
-        public ObservableCollection<string> ScanVariants { get => _scanVariants; set { _scanVariants = value; } }
-        public int SelectedVariant { get => _selectedVariant; set { _selectedVariant = value; OnPropertyChanged(); } }
-        public int SelectedFinger { get => _selectedFinger; set { _selectedFinger = value; OnPropertyChanged(); } }
+
+        private int? _selectedVariant;
+        public int? SelectedVariant { get => _selectedVariant; set { _selectedVariant = value; OnPropertyChanged(); } }
+
+        private int? _selectedFinger;
+        public int? SelectedFinger { get => _selectedFinger; set { _selectedFinger = value; OnPropertyChanged(); } }
+
+        private string _showLibraSettings;
+        public string ShowLibraSettings { get => _showLibraSettings; set { _showLibraSettings = value; OnPropertyChanged(); } }
+
+        private bool? _useLibra;
+        public bool? UseLibra { get => _useLibra; set { _useLibra = value; OnPropertyChanged(); } }
+
+        private bool? _generateFolder;
+        public bool? GenerateFolder { get => _generateFolder; set { _generateFolder = value; OnPropertyChanged(); } }
 
         public SettingsViewModel(MainViewModel mainViewModel)
         {
@@ -49,7 +64,13 @@ namespace FingerprintScannerHelper.ViewModels
             ScanVariants = variants;
             SelectedVariant = config.Step - 1;
             SelectedFinger = config.FingerNumber - 1;
+            GenerateFolder = config.GeneratePersonNumberFolder;
 
+            ShowLibraSettings = "Collapsed";
+            _useLibra = config.UseLibra;
+            if (_useLibra is true) ShowLibraSettings = "Visible";
+
+            ToggleLibraSettings = new ToggleLibraSettingsCommand(this);
             OpenFileDialog = new OpenFileDialogCommand(this);
             SaveConfiguration = new SaveConfigurationCommand(this, _mainViewModel);
         }

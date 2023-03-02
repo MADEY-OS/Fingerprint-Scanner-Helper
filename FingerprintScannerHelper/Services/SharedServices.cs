@@ -43,22 +43,22 @@ namespace FingerprintScannerHelper.Services
             }
         }
 
-        public bool ModifyConfiguration(string src, string dest, string arduinoPort, string arduinoBaud, int person, int finger, int step)
+        public bool ModifyConfiguration(string? src, string? dest, string? portName, string? portBaud, int? person, int? finger, int? step, bool? useLibra, bool? generatePersonNumberFolder)
         {
             try
             {
-                var config = new ConfigurationModel
-                {
-                    SourcePath = src != GetConfiguration().SourcePath ? src : GetConfiguration().SourcePath,
-                    DestinationPath = dest != GetConfiguration().DestinationPath ? dest : GetConfiguration().DestinationPath,
-                    PortName = arduinoPort != GetConfiguration().PortName ? arduinoPort : GetConfiguration().PortName,
-                    PortBaud = arduinoBaud != GetConfiguration().PortBaud ? arduinoBaud : GetConfiguration().PortBaud,
-                    PersonNumber = person != GetConfiguration().PersonNumber ? person : GetConfiguration().PersonNumber,
-                    FingerNumber = finger != GetConfiguration().FingerNumber ? finger : GetConfiguration().FingerNumber,
-                    Step = step != GetConfiguration().Step ? step : GetConfiguration().Step
-                };
+                var newConfig = GetConfiguration();
+                if (src is not null) newConfig.SourcePath = src;
+                if (dest is not null) newConfig.DestinationPath = dest;
+                if (portName is not null) newConfig.PortName = portName;
+                if (portBaud is not null) newConfig.PortBaud = portBaud;
+                if (person is not null) newConfig.PersonNumber = person;
+                if (finger is not null) newConfig.FingerNumber = finger;
+                if (step is not null) newConfig.Step = step;
+                if (useLibra is not null) newConfig.UseLibra = useLibra;
+                if (generatePersonNumberFolder is not null) newConfig.GeneratePersonNumberFolder = generatePersonNumberFolder;
 
-                string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented);
                 File.WriteAllText(configFile, json);
                 return true;
             }
