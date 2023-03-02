@@ -1,4 +1,4 @@
-# (1.0.0) Fingerprint Scanner Helper - FSH
+# (1.0.1) Fingerprint Scanner Helper - FSH
 Simple app that will speed up the scanning process. One of the parts of my Diploma work for Bachelor of Engineering.
 
 ### Technology 
@@ -43,4 +43,10 @@ Scanner saves image => User clicks button => FSH gets image from source director
 
 
 ## Changelog
+- 1.0.1 Reworked scale features.
+  - Now app can save scans with weight but without using scale.
+  - New weight textbox for variants 1 - 3.
+  - Some fixes with services.
+  - New Feature: Generate folder, based on person id.
+  
 - 1.0.0 Initial build.
