@@ -21,8 +21,8 @@ namespace FingerprintScannerHelper.Commands
         {
             switch (parameter.ToString())
             {
-                case "Settings": _settingsViewModel.ShowLibraSettings = _settingsViewModel.UseLibra is true ? "Visible" : "Collapsed"; break;
-                case "Setup": _setupViewModel.ShowLibraSettings = _setupViewModel.UseLibra is true ? "Visible" : "Collapsed"; break;
+                case "Settings": _settingsViewModel.ShowLibraSettings = _settingsViewModel.UseScale is true ? "Visible" : "Collapsed"; break;
+                case "Setup": _setupViewModel.ShowLibraSettings = _setupViewModel.UseScale is true ? "Visible" : "Collapsed"; break;
             }
         }
     }

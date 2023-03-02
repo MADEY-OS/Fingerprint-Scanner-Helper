@@ -41,8 +41,8 @@ namespace FingerprintScannerHelper.ViewModels
         private string _showLibraSettings;
         public string ShowLibraSettings { get => _showLibraSettings; set { _showLibraSettings = value; OnPropertyChanged(); } }
 
-        private bool? _useLibra;
-        public bool? UseLibra { get => _useLibra; set { _useLibra = value; OnPropertyChanged(); } }
+        private bool? _UseScale;
+        public bool? UseScale { get => _UseScale; set { _UseScale = value; OnPropertyChanged(); } }
 
         private bool? _generateFolder;
         public bool? GenerateFolder { get => _generateFolder; set { _generateFolder = value; OnPropertyChanged(); } }
@@ -67,8 +67,8 @@ namespace FingerprintScannerHelper.ViewModels
             GenerateFolder = config.GeneratePersonNumberFolder;
 
             ShowLibraSettings = "Collapsed";
-            _useLibra = config.UseLibra;
-            if (_useLibra is true) ShowLibraSettings = "Visible";
+            _UseScale = config.UseScale;
+            if (_UseScale is true) ShowLibraSettings = "Visible";
 
             ToggleLibraSettings = new ToggleLibraSettingsCommand(this);
             OpenFileDialog = new OpenFileDialogCommand(this);

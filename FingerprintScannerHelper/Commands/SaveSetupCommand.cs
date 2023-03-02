@@ -21,7 +21,7 @@ namespace FingerprintScannerHelper.Commands
         public override void Execute(object? parameter)
         {
             var config = _sharedServices.GetConfiguration();
-            _sharedServices.ModifyConfiguration(src: _setupViewModel.SourcePath, dest: _setupViewModel.DestinationPath, portName: _setupViewModel.PortName, portBaud: _setupViewModel.PortBaud, useLibra: _setupViewModel.UseLibra);
+            _sharedServices.ModifyConfiguration(src: _setupViewModel.SourcePath, dest: _setupViewModel.DestinationPath, portName: _setupViewModel.PortName, portBaud: _setupViewModel.PortBaud, UseScale: _setupViewModel.UseScale);
             _mainViewModel.SelectedViewModel = new HomeViewModel();
             _mainViewModel.MenuVisibility = "Visible";
         }

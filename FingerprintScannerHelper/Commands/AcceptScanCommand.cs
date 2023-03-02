@@ -9,6 +9,7 @@ namespace FingerprintScannerHelper.Commands
     {
         private readonly IMainServices _mainServices = new MainServices();
         private readonly ISecurityServices _securityServices = new SecurityServices();
+        private readonly ISharedServices _sharedServices = new SharedServices();
         private readonly HomeViewModel _homeViewModel;
 
         public AcceptScanCommand(HomeViewModel homeViewModel)
@@ -18,12 +19,12 @@ namespace FingerprintScannerHelper.Commands
 
         public override void Execute(object? parameter)
         {
-            var result = _mainServices.MoveScan(_homeViewModel.LibraReading);
+            var result = _mainServices.MoveScan(_homeViewModel.Weight);
 
             if (result is true && _securityServices.GetSecurityRules().ShowMovedConfirmation is true)
             {
                 MessageBox.Show("Transfer skanu zakończył się sukcesem!", "Sukces", MessageBoxButton.OK);
-                _homeViewModel.LibraReading = string.Empty;
+                _homeViewModel.Weight = string.Empty;
                 _homeViewModel.VariantDescription = _mainServices.GetScanVariant().Description;
                 _homeViewModel.VariantImage = _mainServices.GetImage();
             }
@@ -32,7 +33,7 @@ namespace FingerprintScannerHelper.Commands
                 MessageBox.Show("Transfer skanu zakończył się niepowodzeniem.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            _homeViewModel.ShowLibra = _mainServices.GetScanVariant().Id > 3 ? "Collapsed" : "Visible";
+            _homeViewModel.ShowScale = _mainServices.GetScanVariant().Id > 3 || _sharedServices.GetConfiguration().UseScale is true ? "Collapsed" : "Visible";
         }
     }
 }

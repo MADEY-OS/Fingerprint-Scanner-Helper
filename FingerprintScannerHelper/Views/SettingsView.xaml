@@ -64,7 +64,7 @@
                     Margin="10,0,0,0"
                     Command="{Binding ToggleLibraSettings}"
                     CommandParameter="Settings"
-                    IsChecked="{Binding UseLibra}" />
+                    IsChecked="{Binding UseScale}" />
             </WrapPanel>
             <StackPanel Margin="0,20,0,0" Visibility="{Binding ShowLibraSettings}">
                 <WrapPanel>

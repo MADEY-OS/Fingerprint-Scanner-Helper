@@ -26,7 +26,7 @@ namespace FingerprintScannerHelper.Services
                     PersonNumber = 1,
                     FingerNumber = 1,
                     Step = 1,
-                    UseLibra = true,
+                    UseScale = true,
                     GeneratePersonNumberFolder = true,
                 };
 

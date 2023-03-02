@@ -83,7 +83,7 @@ namespace FingerprintScannerHelper.Services
 
             if (config.Step == 1 || config.Step == 2 || config.Step == 3)
             {
-                if (config.UseLibra == true)
+                if (config.UseScale == true)
                 {
                     try
                     {

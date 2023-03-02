@@ -9,7 +9,7 @@
         public int? PersonNumber { get; set; }
         public int? FingerNumber { get; set; }
         public int? Step { get; set; }
-        public bool? UseLibra { get; set; }
+        public bool? UseScale { get; set; }
         public bool? GeneratePersonNumberFolder { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace FingerprintScannerHelper.Services
             }
         }
 
-        public bool ModifyConfiguration(string? src, string? dest, string? portName, string? portBaud, int? person, int? finger, int? step, bool? useLibra, bool? generatePersonNumberFolder)
+        public bool ModifyConfiguration(string? src, string? dest, string? portName, string? portBaud, int? person, int? finger, int? step, bool? useScale, bool? generatePersonNumberFolder)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace FingerprintScannerHelper.Services
                 if (person is not null) newConfig.PersonNumber = person;
                 if (finger is not null) newConfig.FingerNumber = finger;
                 if (step is not null) newConfig.Step = step;
-                if (useLibra is not null) newConfig.UseLibra = useLibra;
+                if (useScale is not null) newConfig.UseScale = useScale;
                 if (generatePersonNumberFolder is not null) newConfig.GeneratePersonNumberFolder = generatePersonNumberFolder;
 
                 string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented);
