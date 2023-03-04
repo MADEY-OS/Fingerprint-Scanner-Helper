@@ -13,13 +13,19 @@ namespace FingerprintScannerHelper.ViewModels
         public ICommand SaveSecurity { get; set; }
 
         private bool? _moveConfirm;
-        public bool? MoveConfirm { get => _moveConfirm; set { _moveConfirm = value; OnPropertyChanged(); } }
+
+        public bool? MoveConfirm
+        { get => _moveConfirm; set { _moveConfirm = value; OnPropertyChanged(); } }
 
         private bool? _rejectWarning;
-        public bool? RejectWarning { get => _rejectWarning; set { _rejectWarning = value; OnPropertyChanged(); } }
+
+        public bool? RejectWarning
+        { get => _rejectWarning; set { _rejectWarning = value; OnPropertyChanged(); } }
 
         private bool? _rejectConfirm;
-        public bool? RejectConfirm { get => _rejectConfirm; set { _rejectConfirm = value; OnPropertyChanged(); } }
+
+        public bool? RejectConfirm
+        { get => _rejectConfirm; set { _rejectConfirm = value; OnPropertyChanged(); } }
 
         public SecurityViewModel(MainViewModel mainViewModel)
         {

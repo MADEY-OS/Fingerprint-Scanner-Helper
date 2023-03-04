@@ -21,10 +21,10 @@ namespace FingerprintScannerHelper.Commands
         {
             var result = _mainServices.MoveScan(_homeViewModel.Weight);
 
-            if (result is true && _securityServices.GetSecurityRules().ShowMovedConfirmation is true)
+            if (result is true)
             {
-                MessageBox.Show("Transfer skanu zakończył się sukcesem!", "Sukces", MessageBoxButton.OK);
-                _homeViewModel.Weight = string.Empty;
+                if (_securityServices.GetSecurityRules().ShowMovedConfirmation is true) MessageBox.Show("Transfer skanu zakończył się sukcesem!", "Sukces", MessageBoxButton.OK);
+                _homeViewModel.Weight = null;
                 _homeViewModel.VariantDescription = _mainServices.GetScanVariant().Description;
                 _homeViewModel.VariantImage = _mainServices.GetImage();
             }

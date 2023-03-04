@@ -14,24 +14,33 @@ namespace FingerprintScannerHelper.ViewModels
         public ICommand AcceptCommand { get; set; }
 
         private string _variantImage;
-        public string VariantImage { get => _variantImage; set { _variantImage = value; OnPropertyChanged(); } }
+
+        public string VariantImage
+        { get => _variantImage; set { _variantImage = value; OnPropertyChanged(); } }
 
         private string _variantDescription;
-        public string VariantDescription { get => _variantDescription; set { _variantDescription = value; OnPropertyChanged(); } }
+
+        public string VariantDescription
+        { get => _variantDescription; set { _variantDescription = value; OnPropertyChanged(); } }
 
         private string _showScale;
-        public string ShowScale { get => _showScale; set { _showScale = value; OnPropertyChanged(); } }
+
+        public string ShowScale
+        { get => _showScale; set { _showScale = value; OnPropertyChanged(); } }
 
         private string _weight;
-        public string Weight { get => _weight; set { _weight = value; OnPropertyChanged(); } }
+
+        public string Weight
+        { get => _weight; set { _weight = value; OnPropertyChanged(); } }
 
         public HomeViewModel()
         {
+            var config = _sharedServices.GetConfiguration();
             VariantImage = _mainServices.GetImage();
-            ShowScale = _mainServices.GetScanVariant().Id > 3 || _sharedServices.GetConfiguration().UseScale is true ? "Collapsed" : "Visible";
+            ShowScale = _mainServices.GetScanVariant().Id > 3 || config.UseScale is true ? "Collapsed" : "Visible";
             VariantDescription = _mainServices.GetScanVariant().Description;
 
-            RejectCommand = new RejectScanCommand(this);
+            RejectCommand = new RejectScanCommand();
             AcceptCommand = new AcceptScanCommand(this);
         }
     }

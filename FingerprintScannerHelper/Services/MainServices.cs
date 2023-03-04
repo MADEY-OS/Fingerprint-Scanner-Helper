@@ -1,6 +1,5 @@
 ﻿using FingerprintScannerHelper.Interfaces;
 using FingerprintScannerHelper.Models;
-using System;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -14,12 +13,10 @@ namespace FingerprintScannerHelper.Services
 
         public string GetImage()
         {
-            string workingDirectory = Environment.CurrentDirectory;
+            var config = _sharedServices.GetConfiguration();
             try
             {
-                var config = _sharedServices.GetConfiguration();
-                var fingerNumber = config.FingerNumber.ToString();
-                return @"\Images\" + fingerNumber + ".png";
+                return @"\Images\" + config.FingerNumber.ToString() + ".png";
             }
             catch
             {
@@ -49,7 +46,7 @@ namespace FingerprintScannerHelper.Services
             var srcPath = _sharedServices.GetConfiguration().SourcePath;
             try
             {
-                var fileFolder = Directory.GetDirectories(srcPath).FirstOrDefault();
+                var fileFolder = Directory.GetDirectories(srcPath).First();
                 Directory.Delete(fileFolder, true);
                 return true;
             }
@@ -57,7 +54,6 @@ namespace FingerprintScannerHelper.Services
             {
                 return false;
             }
-
         }
 
         public bool MoveScan(string weight)
@@ -65,7 +61,8 @@ namespace FingerprintScannerHelper.Services
             var config = _sharedServices.GetConfiguration();
             var stepNumber = config.Step;
             var variantName = GetScanVariant().Name;
-            var fileFolder = Directory.GetDirectories(config.SourcePath).FirstOrDefault();
+            var fileFolder = Directory.GetDirectories(config.SourcePath).First();
+            if (fileFolder is null) return false;
             var scanFile = Directory.GetFiles(fileFolder).FirstOrDefault();
             string newDirectory;
 

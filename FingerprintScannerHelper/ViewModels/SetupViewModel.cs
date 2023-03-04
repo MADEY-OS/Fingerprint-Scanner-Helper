@@ -18,22 +18,34 @@ namespace FingerprintScannerHelper.ViewModels
         public ICommand ToggleLibraSettings { get; set; }
 
         private string _sourcePath;
-        public string SourcePath { get => _sourcePath; set { _sourcePath = value; OnPropertyChanged(); } }
+
+        public string SourcePath
+        { get => _sourcePath; set { _sourcePath = value; OnPropertyChanged(); } }
 
         private string _destinationPath;
-        public string DestinationPath { get => _destinationPath; set { _destinationPath = value; OnPropertyChanged(); } }
+
+        public string DestinationPath
+        { get => _destinationPath; set { _destinationPath = value; OnPropertyChanged(); } }
 
         private string _portName;
-        public string PortName { get => _portName; set { _portName = value; OnPropertyChanged(); } }
+
+        public string PortName
+        { get => _portName; set { _portName = value; OnPropertyChanged(); } }
 
         private string _portBaud;
-        public string PortBaud { get => _portBaud; set { _portBaud = value; OnPropertyChanged(); } }
+
+        public string PortBaud
+        { get => _portBaud; set { _portBaud = value; OnPropertyChanged(); } }
 
         private bool? _UseScale;
-        public bool? UseScale { get => _UseScale; set { _UseScale = value; OnPropertyChanged(); } }
+
+        public bool? UseScale
+        { get => _UseScale; set { _UseScale = value; OnPropertyChanged(); } }
 
         private string _showLibraSettings;
-        public string ShowLibraSettings { get => _showLibraSettings; set { _showLibraSettings = value; OnPropertyChanged(); } }
+
+        public string ShowLibraSettings
+        { get => _showLibraSettings; set { _showLibraSettings = value; OnPropertyChanged(); } }
 
         public SetupViewModel(MainViewModel mainViewModel)
         {
@@ -57,6 +69,5 @@ namespace FingerprintScannerHelper.ViewModels
             ToggleLibraSettings = new ToggleLibraSettingsCommand(this);
             SaveConfiguration = new SaveSetupCommand(this, _mainViewModel);
         }
-
     }
 }

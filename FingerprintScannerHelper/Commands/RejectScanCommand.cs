@@ -1,6 +1,5 @@
 ﻿using FingerprintScannerHelper.Interfaces;
 using FingerprintScannerHelper.Services;
-using FingerprintScannerHelper.ViewModels;
 using System.Windows;
 
 namespace FingerprintScannerHelper.Commands
@@ -9,12 +8,6 @@ namespace FingerprintScannerHelper.Commands
     {
         private readonly IMainServices _mainServices = new MainServices();
         private readonly ISecurityServices _securityServices = new SecurityServices();
-        private readonly HomeViewModel _homeViewModel;
-
-        public RejectScanCommand(HomeViewModel homeViewModel)
-        {
-            _homeViewModel = homeViewModel;
-        }
 
         public override void Execute(object? parameter)
         {

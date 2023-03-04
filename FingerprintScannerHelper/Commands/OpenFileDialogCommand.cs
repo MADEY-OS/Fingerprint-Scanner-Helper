@@ -9,6 +9,7 @@ namespace FingerprintScannerHelper.Commands
         private readonly ISharedServices _sharedServices = new SharedServices();
         private readonly SetupViewModel? _setupViewModel;
         private readonly SettingsViewModel? _settingsViewModel;
+
         public OpenFileDialogCommand(object obj)
         {
             switch (obj)
@@ -23,10 +24,10 @@ namespace FingerprintScannerHelper.Commands
         {
             switch (parameter.ToString())
             {
-                case "SetupSourcePath": _setupViewModel.SourcePath = _sharedServices.FileDialog(); break;
-                case "SetupDestinationPath": _setupViewModel.DestinationPath = _sharedServices.FileDialog(); break;
-                case "SettingsSourcePath": _settingsViewModel.SourcePath = _sharedServices.FileDialog(); break;
-                case "SettingsDestinationPath": _settingsViewModel.DestinationPath = _sharedServices.FileDialog(); break;
+                case "SetupSourcePath": _setupViewModel.SourcePath = _sharedServices.FileDialog(_setupViewModel.SourcePath); break;
+                case "SetupDestinationPath": _setupViewModel.DestinationPath = _sharedServices.FileDialog(_setupViewModel.DestinationPath); break;
+                case "SettingsSourcePath": _settingsViewModel.SourcePath = _sharedServices.FileDialog(_settingsViewModel.SourcePath); break;
+                case "SettingsDestinationPath": _settingsViewModel.DestinationPath = _sharedServices.FileDialog(_settingsViewModel.DestinationPath); break;
                 default: break;
             }
         }

@@ -35,7 +35,6 @@ namespace FingerprintScannerHelper.Services
             }
         }
 
-
         public void CreateVariantLibrary()
         {
             if (!File.Exists(libFile))

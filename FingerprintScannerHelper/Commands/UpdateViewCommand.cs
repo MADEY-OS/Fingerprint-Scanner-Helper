@@ -1,26 +1,17 @@
 ﻿using FingerprintScannerHelper.ViewModels;
-using System;
-using System.Windows.Input;
 
 namespace FingerprintScannerHelper.Commands
 {
-    public class UpdateViewCommand : ICommand
+    public class UpdateViewCommand : BaseCommand
     {
-        private MainViewModel _mainViewModel;
+        private readonly MainViewModel _mainViewModel;
 
         public UpdateViewCommand(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
         }
 
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? parameter)
+        public override void Execute(object? parameter)
         {
             switch (parameter.ToString())
             {

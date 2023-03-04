@@ -11,11 +11,13 @@ namespace FingerprintScannerHelper.Commands
         private readonly ISharedServices _sharedServices = new SharedServices();
         private readonly SettingsViewModel _settingsViewModel;
         private readonly MainViewModel _mainViewModel;
+
         public SaveConfigurationCommand(SettingsViewModel settingsViewModel, MainViewModel mainViewModel)
         {
             _settingsViewModel = settingsViewModel;
             _mainViewModel = mainViewModel;
         }
+
         public override void Execute(object? parameter)
         {
             var result = _sharedServices.ModifyConfiguration(_settingsViewModel.SourcePath, _settingsViewModel.DestinationPath, _settingsViewModel.PortName, _settingsViewModel.PortBaud, Int32.Parse(_settingsViewModel.PersonNumber), _settingsViewModel.SelectedFinger + 1, _settingsViewModel.SelectedVariant + 1, _settingsViewModel.UseScale, _settingsViewModel.GenerateFolder);

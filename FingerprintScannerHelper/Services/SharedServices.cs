@@ -14,14 +14,14 @@ namespace FingerprintScannerHelper.Services
         private readonly string configFile = "config.json";
         private readonly string libFile = "lib.json";
 
-        public string FileDialog()
+        public string FileDialog(string path)
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.InitialDirectory = baseDir;
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
             {
-                return dialog.InitialDirectory.ToString();
+                return path;
             }
             else
             {

@@ -18,7 +18,6 @@ namespace FingerprintScannerHelper.Commands
             _mainViewModel = mainViewModel;
         }
 
-
         public override void Execute(object? parameter)
         {
             var result = _securityServices.ModifySecurityRules(_securityViewModel.MoveConfirm, _securityViewModel.RejectConfirm, _securityViewModel.RejectWarning);
