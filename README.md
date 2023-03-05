@@ -5,7 +5,6 @@ Simple app that will speed up the scanning process. One of the parts of my Diplo
 1. .NET 6
 2. WPF
 3. Linq
-4. Arduino
 
 ### Pattern
 - MVVM
@@ -32,11 +31,6 @@ Scanner saves image => User clicks button => FSH gets image from source director
 
 ### TODOs
 1. Testing.
-
-### Ideas?
-1. With some changes it can serve as universal file moving app.
-2. if you get scanner api, you can make FSH more automatic.
-
 
 ### Repository serves educational purpose.
 ### FEEL FREE to download and modify source code as You desire. I won't take any benefits of it.
