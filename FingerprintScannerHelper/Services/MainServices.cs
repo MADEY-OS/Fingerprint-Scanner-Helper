@@ -61,8 +61,17 @@ namespace FingerprintScannerHelper.Services
             var config = _sharedServices.GetConfiguration();
             var stepNumber = config.Step;
             var variantName = GetScanVariant().Name;
-            var fileFolder = Directory.GetDirectories(config.SourcePath).First();
-            if (fileFolder is null) return false;
+            string fileFolder;
+
+            try
+            {
+                fileFolder = Directory.GetDirectories(config.SourcePath).First();
+            }
+            catch
+            {
+                return false;
+            }
+
             var scanFile = Directory.GetFiles(fileFolder).FirstOrDefault();
             string newDirectory;
 

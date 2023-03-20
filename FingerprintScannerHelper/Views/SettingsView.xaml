@@ -20,14 +20,14 @@
             Text="Ustawienia" />
         <StackPanel
             Grid.Row="1"
-            Width="430"
+            Width="740"
             Margin="0,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
             <WrapPanel Margin="0,10,0,0">
                 <TextBlock Width="300" Text="Ścieżka źródłowa: " />
                 <TextBox
-                    Width="320"
+                    Width="630"
                     Height="25"
                     Margin="0,5,0,0"
                     Text="{Binding SourcePath}" />
@@ -41,10 +41,10 @@
                     Content="Przeglądaj"
                     ToolTip="Wybierz ścieżkę źródłową z listy." />
             </WrapPanel>
-            <WrapPanel Margin="0,10,0,0">
+            <WrapPanel Margin="0,30,0,0">
                 <TextBlock Width="300" Text="Ścieżka docelowa: " />
                 <TextBox
-                    Width="320"
+                    Width="630"
                     Height="25"
                     Margin="0,5,0,0"
                     Text="{Binding DestinationPath}" />
@@ -111,8 +111,8 @@
                     Text="Wariant: "
                     ToolTip="Wybierz wariant od którego ma zacząć się skanowanie." />
                 <ComboBox
-                    Width="270"
-                    Height="25"
+                    Width="370"
+                    Height="27"
                     VerticalAlignment="Center"
                     ItemsSource="{Binding ScanVariants}"
                     SelectedIndex="{Binding SelectedVariant}" />
@@ -124,8 +124,8 @@
                     Text="Palec: "
                     ToolTip="Wybierz palec od którego ma zacząć sie skanowanie." />
                 <ComboBox
-                    Width="270"
-                    Height="25"
+                    Width="370"
+                    Height="27"
                     VerticalAlignment="Center"
                     SelectedIndex="{Binding SelectedFinger}">
                     <ComboBoxItem Content="Prawy kciuk" />
